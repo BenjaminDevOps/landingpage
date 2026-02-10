@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit Média & Partenariats - The Mastermind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #0f1419;
+            --slate: #1a1f2e;
+            --gold: #d4af37;
+            --gold-light: #f4d56f;
+            --cream: #faf8f3;
+            --accent: #8b7355;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--midnight);
+            color: var(--cream);
+            line-height: 1.7;
+        }
+        
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulance type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' /%3E%3C/svg%3E");
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header */
+        header {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: var(--gold-light);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 5rem 0 3rem;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Download Grid */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .download-card {
+            background: rgba(26, 31, 46, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .download-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .download-card h4 {
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+        
+        .download-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
+        
+        .btn-download-file {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--midnight);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-download-file:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Partnership Section */
+        .partnership-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(26, 31, 46, 0.5) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .partnership-box h3 {
+            margin-top: 0;
+            font-size: 2rem;
+        }
+        
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .benefit-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .benefit-text {
+            flex: 1;
+        }
+        
+        .benefit-text strong {
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--midnight);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* Guidelines */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .guideline-card {
+            background: rgba(26, 31, 46, 0.3);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .guideline-card h4 {
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+        
+        .guideline-card ul {
+            margin-left: 1.5rem;
+        }
+        
+        .guideline-card li {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .stat-box {
+            background: rgba(26, 31, 46, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            opacity: 0.8;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+            margin-top: 5rem;
+        }
+        
+        .footer-link {
+            color: var(--gold);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--gold-light);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .partnership-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">THE MASTERMIND</a>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Kit Média & Partenariats</h1>
+                <p class="subtitle">Ressources complètes pour créateurs de contenu, influenceurs et médias</p>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="container">
+                <h2>📦 Kit Média Complet</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9;">
+                    Téléchargez tous les assets nécessaires pour créer du contenu professionnel autour de The Mastermind.
+                </p>
+                
+                <div class="download-grid">
+                    <div class="download-card">
+                        <span class="download-icon">🎨</span>
+                        <h4>Logos & Identité</h4>
+                        <p>Logos en différents formats (PNG, SVG), variations couleur/noir et blanc, guidelines d'utilisation</p>
+                        <a href="#" class="btn-download-file" onclick="alert('Disponible prochainement. Contactez partnerships@themastermind.app'); return false;">
+                            Télécharger
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="download-card">
+                        <span class="download-icon">📸</span>
+                        <h4>Captures d'écran HD</h4>
+                        <p>Screenshots haute résolution de l'interface, gameplay, fonctionnalités principales</p>
+                        <a href="#" class="btn-download-file" onclick="alert('Disponible prochainement. Contactez partnerships@themastermind.app'); return false;">
+                            Télécharger
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="download-card">
+                        <span class="download-icon">🎬</span>
+                        <h4>Vidéos Promotionnelles</h4>
+                        <p>Trailers, teasers, gameplay vidéos en différents formats (16:9, 9:16, 1:1)</p>
+                        <a href="#" class="btn-download-file" onclick="alert('Disponible prochainement. Contactez partnerships@themastermind.app'); return false;">
+                            Télécharger
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="download-card">
+                        <span class="download-icon">📝</span>
+                        <h4>Dossier de Presse</h4>
+                        <p>Communiqué de presse, fiche technique, biographie de l'équipe, historique du projet</p>
+                        <a href="#" class="btn-download-file" onclick="alert('Disponible prochainement. Contactez partnerships@themastermind.app'); return false;">
+                            Télécharger
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="download-card">
+                        <span class="download-icon">🎯</span>
+                        <h4>Assets Réseaux Sociaux</h4>
+                        <p>Templates Instagram, TikTok, YouTube (miniatures, stories, posts) prêts à l'emploi</p>
+                        <a href="#" class="btn-download-file" onclick="alert('Disponible prochainement. Contactez partnerships@themastermind.app'); return false;">
+                            Télécharger
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="download-card">
+                        <span class="download-icon">💎</span>
+                        <h4>Éléments Premium</h4>
+                        <p>Icônes, illustrations, patterns, éléments graphiques exclusifs de la marque</p>
+                        <a href="#" class="btn-download-file" onclick="alert('Disponible prochainement. Contactez partnerships@themastermind.app'); return false;">
+                            Télécharger
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="container">
+                <div class="partnership-box">
+                    <h3>🤝 Programme d'Affiliation Influenceurs</h3>
+                    <p style="font-size: 1.1rem; margin: 1rem 0 2rem;">
+                        Rejoignez notre communauté de créateurs et monétisez votre audience avec des conditions exclusives
+                    </p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">💰</span>
+                            <div class="benefit-text">
+                                <strong>Commission attractive</strong>
+                                Jusqu'à 30% de commission sur chaque téléchargement généré
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🎁</span>
+                            <div class="benefit-text">
+                                <strong>Codes promo exclusifs</strong>
+                                Offrez des avantages uniques à votre communauté
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <span class="benefit-icon">📊</span>
+                            <div class="benefit-text">
+                                <strong>Dashboard personnalisé</strong>
+                                Suivez vos performances en temps réel
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🚀</span>
+                            <div class="benefit-text">
+                                <strong>Accès anticipé</strong>
+                                Testez les nouvelles fonctionnalités en avant-première
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🎨</span>
+                            <div class="benefit-text">
+                                <strong>Assets exclusifs</strong>
+                                Kit média premium réservé aux partenaires
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <span class="benefit-icon">💬</span>
+                            <div class="benefit-text">
+                                <strong>Support dédié</strong>
+                                Une équipe à votre écoute pour vous accompagner
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="mailto:partnerships@themastermind.app?subject=Candidature Programme Affiliation&body=Bonjour,%0D%0A%0D%0AJe souhaite rejoindre le programme d'affiliation The Mastermind.%0D%0A%0D%0ANom/Pseudo:%0D%0ACanal principal (YouTube/TikTok/Instagram/Twitch):%0D%0ALien de la chaîne/profil:%0D%0ANombre d'abonnés:%0D%0AThématique du contenu:%0D%0A%0D%0AMerci!" class="btn-primary">
+                        Rejoindre le programme
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <h3>📈 Chiffres Clés</h3>
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Téléchargements</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">4.8★</span>
+                        <span class="stat-label">Note moyenne</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">85%</span>
+                        <span class="stat-label">Utilisateurs actifs</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">2M+</span>
+                        <span class="stat-label">Parties jouées</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="container">
+                <h2>📋 Guidelines d'Utilisation</h2>
+                
+                <div class="guidelines-grid">
+                    <div class="guideline-card">
+                        <h4>✅ À faire</h4>
+                        <ul>
+                            <li>Utiliser les logos officiels fournis</li>
+                            <li>Respecter les couleurs de la marque</li>
+                            <li>Maintenir un espace autour du logo</li>
+                            <li>Créer du contenu authentique</li>
+                            <li>Mentionner clairement le partenariat</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="guideline-card">
+                        <h4>❌ À éviter</h4>
+                        <ul>
+                            <li>Modifier les logos ou couleurs</li>
+                            <li>Déformer l'identité de la marque</li>
+                            <li>Créer des contenus trompeurs</li>
+                            <li>Utiliser des captures obsolètes</li>
+                            <li>Faire de fausses promesses</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="guideline-card">
+                        <h4>💡 Conseils de contenu</h4>
+                        <ul>
+                            <li>Montrer le gameplay réel</li>
+                            <li>Partager vos scores authentiques</li>
+                            <li>Créer des tutoriels utiles</li>
+                            <li>Engager votre communauté</li>
+                            <li>Être transparent sur le sponsoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="container">
+                <h2>📞 Contact</h2>
+                <div style="text-align: center; max-width: 600px; margin: 2rem auto;">
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                        Une question ? Besoin d'assets spécifiques ? Notre équipe est là pour vous aider.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+                        <a href="mailto:partnerships@themastermind.app" style="color: var(--gold); text-decoration: none; font-size: 1.1rem;">
+                            📧 partnerships@themastermind.app
+                        </a>
+                        <a href="mailto:press@themastermind.app" style="color: var(--gold); text-decoration: none; font-size: 1.1rem;">
+                            📰 press@themastermind.app
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <a href="index.html" class="footer-link">Accueil</a>
+            <a href="privacy-policy.html" class="footer-link">Politique de confidentialité</a>
+            <a href="mailto:support@themastermind.app" class="footer-link">Support</a>
+            <p style="margin-top: 1.5rem; opacity: 0.6; font-size: 0.9rem;">© 2025 The Mastermind. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
