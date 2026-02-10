@@ -249,6 +249,116 @@
             opacity: 0.9;
         }
         
+        /* Media Section */
+        .media-section {
+            padding: 8rem 0;
+            background: var(--midnight);
+            position: relative;
+        }
+        
+        .media-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .media-card {
+            background: rgba(26, 31, 46, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .media-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.25);
+        }
+        
+        .media-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .media-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .media-card p {
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        .btn-media {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--midnight);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-media:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.5);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+            background: rgba(26, 31, 46, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gold-light);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--cream);
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
         /* Footer */
         footer {
             padding: 3rem 0;
@@ -383,14 +493,77 @@
                 </div>
             </div>
         </section>
+        
+        <section class="media-section">
+            <div class="container">
+                <h2 class="section-title">Espace Média & Partenariats</h2>
+                
+                <div class="media-grid">
+                    <div class="media-card">
+                        <span class="media-icon">🎥</span>
+                        <h3>Influenceurs</h3>
+                        <p>Vous êtes créateur de contenu ? Rejoignez notre programme d'affiliation et bénéficiez de conditions exclusives pour promouvoir The Mastermind auprès de votre communauté.</p>
+                        <a href="/cdn-cgi/l/email-protection#71011003051f14030219180102310519141c10020514031c181f155f1001014e0204131b1412054c35141c101f15145115145101100305141f100318100551181f171d04141f12140403" class="btn-media">
+                            Devenir partenaire
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="media-card">
+                        <span class="media-icon">📦</span>
+                        <h3>Kit Média</h3>
+                        <p>Téléchargez notre kit média complet contenant logos, captures d'écran HD, visuels promotionnels, et guidelines de marque pour vos créations de contenu.</p>
+                        <a href="media-kit.html" class="btn-media">
+                            Télécharger le kit
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5-5M12 15V3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="media-card">
+                        <span class="media-icon">📰</span>
+                        <h3>Presse</h3>
+                        <p>Journalistes et médias ? Accédez à notre dossier de presse, communiqués officiels et demandez un accès presse pour tester l'application en avant-première.</p>
+                        <a href="/cdn-cgi/l/email-protection#91e1e3f4e2e2d1e5f9f4fcf0e2e5f4e3fcf8fff5bff0e1e1aee2e4f3fbf4f2e5acd5f4fcf0fff5f4b1e1e3f4e2e2f4" class="btn-media">
+                            Contact presse
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <path d="M22 6l-10 7L2 6"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Téléchargements</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4.8★</span>
+                        <span class="stat-label">Note moyenne</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">85%</span>
+                        <span class="stat-label">Utilisateurs actifs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2M+</span>
+                        <span class="stat-label">Parties jouées</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="#" class="footer-link">Politique de confidentialité</a>
-                <a href="#" class="footer-link">Conditions d'utilisation</a>
-                <a href="#" class="footer-link">Contact</a>
+                <a href="privacy-policy.html" class="footer-link">Politique de confidentialité</a>
+                <a href="/cdn-cgi/l/email-protection#83f0f6f3f3ecf1f7c3f7ebe6eee2f0f7e6f1eeeaede7ade2f3f3" class="footer-link">Contact</a>
             </div>
             <p class="copyright">© 2025 The Mastermind. Tous droits réservés.</p>
         </div>
